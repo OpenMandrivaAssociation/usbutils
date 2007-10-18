@@ -1,6 +1,6 @@
 %define	name	usbutils
 %define	version	0.72
-%define	release	%mkrel 3
+%define	release	%mkrel 4
 
 Summary:	Linux USB utilities
 Name:		%{name}
@@ -8,9 +8,6 @@ Version:	%{version}
 Release:	%{release}
 URL:		http://sourceforge.net/projects/linux-usb/
 Source0:	http://prownloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
-# 1.222 2005/11/18
-#Source1: 	http://www.linux-usb.org/usb.ids
-#Patch0:		usbutils-0.70-fix-usage.patch.bz2
 # (tpg) http://farragut.flameeyes.is-a-geek.org/articles/2007/05/19/update-on-usb-ids + my few usb ids
 Patch1:		%{name}-0.72-usbids-more.patch
 License:	GPL
@@ -26,10 +23,7 @@ It requires a Linux kernel version 2.3.15 or newer (supporting the
 
 %prep
 %setup -q
-#%patch0 -p1
 %patch1 -p1
-
-#cp -a %{SOURCE1} usb.ids
 
 %build
 %configure2_5x --enable-usbmodules
@@ -39,13 +33,13 @@ It requires a Linux kernel version 2.3.15 or newer (supporting the
 rm -rf %{buildroot}
 %makeinstall_std
 
-rm -f %{buildroot}{%_includedir/libusb.h,%_libdir/libusb*}
+rm -f %{buildroot}{%{_includedir}/libusb.h,%{_libdir}/libusb*}
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%{_mandir}/*/*
 %{_datadir}/usb.ids
 %{_sbindir}/*
+%{_mandir}/*/*
