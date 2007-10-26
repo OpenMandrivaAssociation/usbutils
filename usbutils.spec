@@ -1,6 +1,6 @@
 %define	name	usbutils
-%define	version	0.72
-%define	release	%mkrel 4
+%define	version	0.73
+%define	release	%mkrel 1
 
 Summary:	Linux USB utilities
 Name:		%{name}
@@ -23,7 +23,7 @@ It requires a Linux kernel version 2.3.15 or newer (supporting the
 
 %prep
 %setup -q
-%patch1 -p1
+#%patch1 -p1
 
 %build
 %configure2_5x --enable-usbmodules
