@@ -12,6 +12,7 @@ Source0:	http://prownloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
 Patch1:		%{name}-0.72-usbids-more.patch
 License:	GPL
 Group:		System/Kernel and hardware
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libusb-devel
 BuildConflicts:	glibc < 2.3.4-5mdk
 
