@@ -1,6 +1,6 @@
 %define	name	usbutils
 %define	version	0.73
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 
 Summary:	Linux USB utilities
 Name:		%{name}
