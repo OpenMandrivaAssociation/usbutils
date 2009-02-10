@@ -1,32 +1,38 @@
-%define	name	usbutils
-%define	version	0.73
-%define	release	%mkrel 2
-
 Summary:	Linux USB utilities
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-URL:		http://sourceforge.net/projects/linux-usb/
-Source0:	http://prownloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
-# (tpg) http://farragut.flameeyes.is-a-geek.org/articles/2007/05/19/update-on-usb-ids + my few usb ids
-Patch1:		%{name}-0.72-usbids-more.patch
-License:	GPL
+Name:		usbutils
+Version:	0.73
+Release:	%mkrel 3
+License:	GPLv2+
 Group:		System/Kernel and hardware
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+URL:		http://sourceforge.net/projects/linux-usb/
+Source0:	http://downloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
+Patch0:		usbutils-0.73-sysfs-support.patch
 BuildRequires:	libusb-devel
+# (tpg) needs to update usb.ids
+BuildRequires:	wget
+# (tpg) hal doesn't read gzip'd usb.ids file, so disable zlib-devel
+# see also configure option
+BuildConflicts:	zlib-devel
 BuildConflicts:	glibc < 2.3.4-5mdk
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-usbutils contains a utility for inspecting devices connected to the USB bus.
-It requires a Linux kernel version 2.3.15 or newer (supporting the
-'/proc/bus/usb' interface).
+This package contains the lsusb utility for inspecting the devices 
+connected to the USB bus. It shows a graphical representation of the 
+devices that are currently plugged in, showing the topology of the 
+USB bus. It also displays information on each individual device on 
+the bus.
 
 %prep
 %setup -q
-#%patch1 -p1
+%patch0 -p1
 
 %build
-%configure2_5x --enable-usbmodules
+# (tpg) download fresh ids from upstream
+./update-usbids.sh
+
+%configure2_5x \
+	--disable-zlib
 %make
 
 %install
@@ -40,6 +46,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%{_datadir}/usb.ids
+%doc AUTHORS ChangeLog README
 %{_sbindir}/*
+%{_datadir}/usb.ids
 %{_mandir}/*/*
