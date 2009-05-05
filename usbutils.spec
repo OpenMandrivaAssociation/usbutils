@@ -1,12 +1,13 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	0.73
-Release:	%mkrel 3
+Version:	0.81
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		http://sourceforge.net/projects/linux-usb/
 Source0:	http://downloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
-Patch0:		usbutils-0.73-sysfs-support.patch
+# (tv) add missing update-usbids.sh (already fixed in git upstream):
+Patch1:		usbutils-0.81-add-missing-tool.patch
 BuildRequires:	libusb-devel
 # (tpg) needs to update usb.ids
 BuildRequires:	wget
@@ -25,11 +26,14 @@ the bus.
 
 %prep
 %setup -q
-%patch0 -p1
+# (tv) missing update-usbids.sh needs to be tagged as executable as patch uses 0644:
+%patch1 -p1
+chmod +x update-usbids.sh
 
 %build
 # (tpg) download fresh ids from upstream
-./update-usbids.sh
+# (tv) this script handles nicely network errors so prevent aborting build in that case:
+./update-usbids.sh || :
 
 %configure2_5x \
 	--disable-zlib
