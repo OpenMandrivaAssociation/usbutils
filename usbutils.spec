@@ -1,6 +1,6 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	0.82
+Version:	0.84
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Kernel and hardware
@@ -26,10 +26,6 @@ the bus.
 %setup -q
 
 %build
-# (tpg) download fresh ids from upstream
-# (tv) this script handles nicely network errors so prevent aborting build in that case:
-./update-usbids.sh || :
-
 %configure2_5x \
 	--disable-zlib
 %make
