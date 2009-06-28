@@ -1,14 +1,12 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	0.84
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		http://sourceforge.net/projects/linux-usb/
 Source0:	http://downloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
 BuildRequires:	libusb-devel
-# (tpg) needs to update usb.ids
-BuildRequires:	wget
 # (tpg) hal doesn't read gzip'd usb.ids file, so disable zlib-devel
 # see also configure option
 BuildConflicts:	zlib-devel
