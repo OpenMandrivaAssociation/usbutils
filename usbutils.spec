@@ -7,9 +7,6 @@ Group:		System/Kernel and hardware
 URL:		http://sourceforge.net/projects/linux-usb/
 Source0:	http://downloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
 BuildRequires:	libusb-devel
-# (tpg) hal doesn't read gzip'd usb.ids file, so disable zlib-devel
-# see also configure option
-BuildConflicts:	zlib-devel
 BuildConflicts:	glibc < 2.3.4-5mdk
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
