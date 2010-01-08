@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	0.86
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		http://sourceforge.net/projects/linux-usb/
@@ -10,6 +10,7 @@ Source0:	http://downloads.sourceforge.net/linux-usb/%{name}-%{version}.tar.bz2
 BuildRequires:	libusb-devel
 BuildConflicts:	glibc < 2.3.4-5mdk
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Requires:	ldetect-lst >= 0.1.282
 
 %description
 This package contains the lsusb utility for inspecting the devices 
@@ -32,6 +33,9 @@ rm -rf %{buildroot}
 
 rm -f %{buildroot}{%{_includedir}/libusb.h,%{_libdir}/libusb*}
 
+# do not package usb.ids, handled by ldetect-lst now
+rm -f %{buildroot}/%{_datadir}/usb.ids
+
 %clean
 rm -rf %{buildroot}
 
@@ -40,6 +44,5 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog README
 %{_sbindir}/*
 %{_bindir}/*
-%{_datadir}/usb.ids
 %{_mandir}/*/*
 %_datadir/pkgconfig/usbutils.pc
