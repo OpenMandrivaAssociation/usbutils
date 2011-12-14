@@ -1,15 +1,14 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	004
-Release:	%mkrel 1
+Version:	005
+Release:	1
 License:	GPLv2+
 Group:		System/Kernel and hardware
-URL:		http://sourceforge.net/projects/linux-usb/
-Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
+URL:		https://github.com/gregkh/usbutils
+Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}_%{version}.orig.tar.gz
 BuildRequires:	libusb-devel
 #BuildRequires:	zlib-devel
 BuildConflicts:	glibc < 2.3.4-5mdk
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	ldetect-lst >= 0.1.282
 
 %description
@@ -23,21 +22,18 @@ the bus.
 %setup -q
 
 %build
+./autogen.sh
 %configure2_5x \
 	--disable-zlib
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 rm -f %{buildroot}{%{_includedir}/libusb.h,%{_libdir}/libusb*}
 
 # do not package usb.ids, handled by ldetect-lst now
 rm -f %{buildroot}/%{_datadir}/usb.ids
-
-%clean
-rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
