@@ -28,14 +28,12 @@ the bus.
 %install
 %makeinstall_std
 
-rm -f %{buildroot}{%{_includedir}/libusb.h,%{_libdir}/libusb*, \
-	%{_datadir}/pkgconfig/usbutils.pc}
+rm -f %{buildroot}{%{_includedir}/libusb.h,%{_libdir}/libusb*,%{_datadir}/pkgconfig/usbutils.pc}
 
 # do not package usb.ids, handled by ldetect-lst now
 rm -f %{buildroot}/%{_datadir}/usb.ids
 
 %files
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog README
 %{_sbindir}/*
 %{_bindir}/*
