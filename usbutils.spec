@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	005
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
@@ -16,6 +16,15 @@ devices that are currently plugged in, showing the topology of the
 USB bus. It also displays information on each individual device on 
 the bus.
 
+%package devel
+Summary:	Development files for %{name}
+Group:		Development/C
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Development files and headers for %{name}.
+
+
 %prep
 %setup -q
 
@@ -28,14 +37,14 @@ the bus.
 %install
 %makeinstall_std
 
-rm -f %{buildroot}{%{_includedir}/libusb.h,%{_libdir}/libusb*,%{_datadir}/pkgconfig/usbutils.pc}
-
 # do not package usb.ids, handled by ldetect-lst now
 rm -f %{buildroot}/%{_datadir}/usb.ids
 
 %files
-%doc AUTHORS ChangeLog README
 %{_sbindir}/*
 %{_bindir}/*
 %{_mandir}/*/*
 
+%files devel
+%doc AUTHORS ChangeLog README
+%{_datadir}/pkgconfig/usbutils.pc
