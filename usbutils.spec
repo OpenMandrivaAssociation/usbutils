@@ -1,13 +1,14 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	006
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
 BuildRequires:	libusb-devel
 Requires:	ldetect-lst >= 0.1.282
+Requires:	udev
 
 %description
 This package contains the lsusb utility for inspecting the devices 
