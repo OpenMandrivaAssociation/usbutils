@@ -6,7 +6,7 @@ License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
-BuildRequires:	libusb-devel
+BuildRequires:	pkgconfig(libusb-1.0)
 Requires:	ldetect-lst >= 0.1.282
 Requires:	udev
 
