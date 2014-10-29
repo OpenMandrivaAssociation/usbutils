@@ -41,7 +41,6 @@ Development files and headers for %{name}.
 rm -f %{buildroot}/%{_datadir}/usb.ids
 
 %files
-%{_sbindir}/*
 %{_bindir}/*
 %{_mandir}/*/*
 
