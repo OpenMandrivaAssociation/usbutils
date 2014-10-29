@@ -1,4 +1,6 @@
 removed_sources:
   usbutils-006.tar.bz2: 0a6457f5deb8619be9b4b96b3848f2f61ce10d11
-sources:
   usbutils-007.tar.bz2: 6632f8ac6116fa4fd9e879df3134a206f0c4473c
+
+sources:
+  usbutils-008.tar.xz: 233dee6cd6829476be778554984045663b568b18
