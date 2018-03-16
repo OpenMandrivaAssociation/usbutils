@@ -7,6 +7,7 @@ Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(libusb-1.0)
+BuildRequires:	pkgconfig(libudev)
 Requires:	ldetect-lst >= 0.1.282
 Requires:	udev
 
