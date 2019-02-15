@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	010
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
@@ -21,17 +21,17 @@ USB bus. It also displays information on each individual device on
 the bus.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %configure \
 	--disable-zlib
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
-# do not package usb.ids, handled by ldetect-lst now
+# do not package usb.ids, handled by hwdata now
 rm -f %{buildroot}/%{_datadir}/usb.ids
 
 %files
