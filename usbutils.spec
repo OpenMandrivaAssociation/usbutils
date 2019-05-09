@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	010
-Release:	4
+Version:	012
+Release:	1
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
@@ -22,6 +22,7 @@ the bus.
 
 %prep
 %autosetup -p1
+autoreconf -fiv
 
 %build
 %configure \
