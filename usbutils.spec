@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	012
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
@@ -26,14 +26,17 @@ autoreconf -fiv
 
 %build
 %configure \
-	--disable-zlib
+	--disable-zlib \
+	--datadir=%{_datadir}/hwdata \
+	--disable-usbids
+
 %make_build
 
 %install
 %make_install
 
 # do not package usb.ids, handled by hwdata now
-rm -f %{buildroot}/%{_datadir}/usb.ids
+rm -f %{buildroot}/%{_datadir}/usb.ids ||:
 
 %files
 %{_bindir}/*
