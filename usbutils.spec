@@ -1,6 +1,6 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	014
+Version:	015
 Release:	1
 License:	GPLv2+
 Group:		System/Kernel and hardware
