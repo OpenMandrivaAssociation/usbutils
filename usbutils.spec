@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	015
-Release:	2
+Version:	016
+Release:	1
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
@@ -41,3 +41,4 @@ rm -f %{buildroot}/%{_datadir}/usb.ids ||:
 %files
 %{_bindir}/*
 %{_mandir}/*/*
+%{_libdir}/pkgconfig/usbutils.pc
