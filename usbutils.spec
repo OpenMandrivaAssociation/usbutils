@@ -1,6 +1,6 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	017
+Version:	018
 Release:	1
 License:	GPLv2+
 Group:		System/Kernel and hardware
@@ -10,8 +10,7 @@ BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libudev)
 Requires:	hwdata >= 0.314
 Requires:	udev
-# Used to be just a pkgconfig file that is gone in 010
-Obsoletes:	%{name}-devel
+BuildSystem:	meson
 
 %description
 This package contains the lsusb utility for inspecting the devices 
@@ -20,25 +19,10 @@ devices that are currently plugged in, showing the topology of the
 USB bus. It also displays information on each individual device on 
 the bus.
 
-%prep
-%autosetup -p1
-autoreconf -fiv
-
-%build
-%configure \
-	--disable-zlib \
-	--datadir=%{_datadir}/hwdata \
-	--disable-usbids
-
-%make_build
-
-%install
-%make_install
-
+%install -a
 # do not package usb.ids, handled by hwdata now
 rm -f %{buildroot}/%{_datadir}/usb.ids ||:
 
 %files
 %{_bindir}/*
 %{_mandir}/*/*
-%{_libdir}/pkgconfig/usbutils.pc
