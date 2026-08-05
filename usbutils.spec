@@ -1,7 +1,7 @@
 Summary:	Linux USB utilities
 Name:		usbutils
 Version:	019
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Kernel and hardware
 URL:		https://github.com/gregkh/usbutils
@@ -9,7 +9,8 @@ Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.t
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libudev)
 Requires:	hwdata >= 0.314
-Requires:	udev
+# udev is not needed in chroots/containers; still useful on real hardware
+Suggests:	udev
 BuildSystem:	meson
 
 %description
